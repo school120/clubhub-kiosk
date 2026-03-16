@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="refresh" content="0; url=https://clubhub.co/dashboard?page=calendar-container">
+<meta charset="utf-8">
+<script>
+function go() {
+  const tv = "https://clubhub.co/daily_events/the-frisch-school";
+  const dashboard = "https://clubhub.co/dashboard?page=calendar-container";
+
+  fetch(tv, { credentials: "include" })
+    .then(r => {
+      if (r.redirected || r.url.includes("dashboard") || r.status === 200) {
+        window.location = tv;
+      } else {
+        window.location = dashboard;
+      }
+    })
+    .catch(() => {
+      window.location = dashboard;
+    });
+}
+</script>
 </head>
-<body>
-Redirecting...
+<body onload="go()">
+Loading ClubHub display...
 </body>
 </html>
