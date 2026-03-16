@@ -3,25 +3,19 @@
 <head>
 <meta charset="utf-8">
 <script>
-function go() {
+function redirect() {
+  const dashboard = "https://clubhub.co/dashboard";
   const tv = "https://clubhub.co/daily_events/the-frisch-school";
-  const dashboard = "https://clubhub.co/dashboard?page=calendar-container";
 
-  fetch(tv, { credentials: "include" })
-    .then(r => {
-      if (r.redirected || r.url.includes("dashboard") || r.status === 200) {
-        window.location = tv;
-      } else {
-        window.location = dashboard;
-      }
-    })
-    .catch(() => {
-      window.location = dashboard;
-    });
+  if (window.location.href.includes("dashboard")) {
+      window.location.replace(tv);
+  } else {
+      window.location.replace(dashboard);
+  }
 }
 </script>
 </head>
-<body onload="go()">
-Loading ClubHub display...
+<body onload="redirect()">
+Loading display...
 </body>
 </html>
